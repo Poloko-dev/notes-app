@@ -6,24 +6,14 @@ if (!MONGODB_URI) {
   throw new Error("Define the MONGODB_URI environment variable in .env.local");
 }
 
-// ✅ Extend Node global type
-declare global {
-  // eslint-disable-next-line no-var
-  var mongoose:
-    | {
-        conn: Mongoose | null;
-        promise: Promise<Mongoose> | null;
-      }
-    | undefined;
-}
-
-// ✅ Always initialize cached
-const cached = global.mongoose ?? {
-  conn: null,
-  promise: null,
+let cached = (global as any).mongoose as {
+  conn: Mongoose | null;
+  promise: Promise<Mongoose> | null;
 };
 
-global.mongoose = cached;
+if (!cached) {
+  cached = (global as any).mongoose = { conn: null, promise: null };
+}
 
 export async function connectDB(): Promise<Mongoose> {
   if (cached.conn) {
