@@ -69,8 +69,8 @@ export default function NotesPage() {
   };
 
   return (
-    <div className="p-8 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">My Notes</h1>
+    <div className="p-8 max-w-3xl mx-auto min-h-screen bg-gray-900 text-gray-100">
+      <h1 className="text-3xl font-bold mb-6 text-white">My Notes</h1>
 
       <div className="flex gap-2 mb-6">
         <input
@@ -78,18 +78,18 @@ export default function NotesPage() {
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="border px-4 py-2 rounded flex-1"
+          className="border border-gray-700 bg-gray-800 text-gray-100 px-4 py-2 rounded flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="text"
           placeholder="Content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="border px-4 py-2 rounded flex-1"
+          className="border border-gray-700 bg-gray-800 text-gray-100 px-4 py-2 rounded flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <button
           onClick={addNote}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded transition-all shadow-md"
         >
           Add
         </button>
@@ -99,22 +99,22 @@ export default function NotesPage() {
         {notes.map((note) => (
           <li
             key={note._id}
-            className="border p-4 rounded flex justify-between items-center"
+            className="border border-gray-700 rounded p-4 flex justify-between items-center bg-gray-800 shadow-md hover:shadow-lg transition-all"
           >
             <div>
-              <h2 className="font-semibold">{note.title}</h2>
-              <p>{note.content}</p>
+              <h2 className="font-semibold text-lg">{note.title}</h2>
+              <p className="text-gray-300 mt-1">{note.content}</p>
             </div>
             <div className="flex gap-2">
               <button
                 onClick={() => updateNote(note._id)}
-                className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 transition"
+                className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded shadow-md transition-all"
               >
                 Edit
               </button>
               <button
                 onClick={() => deleteNote(note._id)}
-                className="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700 transition"
+                className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded shadow-md transition-all"
               >
                 Delete
               </button>
