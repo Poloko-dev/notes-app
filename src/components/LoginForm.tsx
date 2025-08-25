@@ -22,7 +22,6 @@ export default function LoginForm() {
 
       if (res.ok) {
         localStorage.setItem("user", JSON.stringify(data.user));
-
         router.push("/notes");
       } else {
         setMessage(data.message);
@@ -35,23 +34,32 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 w-full max-w-sm"
+      className="flex flex-col gap-4 w-full max-w-sm bg-gray-900 p-6 rounded-2xl shadow-lg"
     >
+      {/* Input field */}
       <input
         type="email"
         placeholder="Enter your email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="border px-4 py-2 rounded"
+        className="border border-gray-700 bg-gray-800 text-gray-100 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition"
         required
       />
+
+      {/* Modern button */}
       <button
         type="submit"
-        className="bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+        className="px-6 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-green-400 to-emerald-600 shadow-lg hover:shadow-xl hover:scale-105 transition-all"
       >
         Login
       </button>
-      {message && <p className="text-sm text-red-500">{message}</p>}
+
+      {/* Error / message */}
+      {message && (
+        <p className="text-sm text-red-400 text-center font-medium">
+          {message}
+        </p>
+      )}
     </form>
   );
 }

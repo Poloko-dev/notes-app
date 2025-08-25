@@ -72,24 +72,28 @@ export default function NotesPage() {
     <div className="p-8 max-w-3xl mx-auto min-h-screen bg-gray-900 text-gray-100">
       <h1 className="text-3xl font-bold mb-6 text-white">My Notes</h1>
 
-      <div className="flex gap-2 mb-6">
+      <div className="flex flex-col gap-3 mb-6">
+        {/* Title input */}
         <input
           type="text"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="border border-gray-700 bg-gray-800 text-gray-100 px-4 py-2 rounded flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="border border-gray-700 bg-gray-800 text-gray-100 px-4 py-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <input
-          type="text"
+
+        {/* Content textarea */}
+        <textarea
           placeholder="Content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="border border-gray-700 bg-gray-800 text-gray-100 px-4 py-2 rounded flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+          className="border border-gray-700 bg-gray-800 text-gray-100 px-4 py-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none min-h-[100px]"
+        ></textarea>
+
+        {/* Add button */}
         <button
           onClick={addNote}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded transition-all shadow-md"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded transition-all shadow-md w-full sm:w-auto"
         >
           Add
         </button>
@@ -101,9 +105,11 @@ export default function NotesPage() {
             key={note._id}
             className="border border-gray-700 rounded p-4 flex justify-between items-center bg-gray-800 shadow-md hover:shadow-lg transition-all"
           >
-            <div>
+            <div className="max-w-[70%] break-words">
               <h2 className="font-semibold text-lg">{note.title}</h2>
-              <p className="text-gray-300 mt-1">{note.content}</p>
+              <p className="text-gray-300 mt-1 break-words whitespace-pre-wrap">
+                {note.content}
+              </p>
             </div>
             <div className="flex gap-2">
               <button
